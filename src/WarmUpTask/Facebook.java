@@ -1,3 +1,5 @@
+package WarmUpTask;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,9 +17,17 @@ public class Facebook {
         driver.findElement(By.name("pass")).sendKeys("12345");
         driver.findElement(By.name("login")).click();
         Thread.sleep(5000);
+        String name=driver.findElement(By.className("_9ay7")).getText();
+        driver.quit();
+        if (name.equalsIgnoreCase("The password you've entered is incorrect. Forgot Password?")){
+//
+            System.out.printf("passed");
+        }
+        else{
+            System.out.printf("failed");
+            throw new RuntimeException();
+        }
 
-        WebElement element = driver.findElement(By.xpath("//div[contains( text(), 'entered is incorrect. ')]"));
-        Assert.assertTrue(element.isDisplayed());
 
 
     }
